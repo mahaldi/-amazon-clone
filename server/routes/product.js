@@ -24,4 +24,18 @@ router.post('/products', upload.single('photo'), async(req, res) => {
 	}
 })
 
+router.get('/products', async(req, res) => {
+	try{
+		let products = await Product.find()
+		res.json({
+			success: true,
+			products
+		})
+	}catch(err){
+		res.status(500).json({
+			status: false,
+			message: err
+		})
+	}
+})
 module.exports = router;

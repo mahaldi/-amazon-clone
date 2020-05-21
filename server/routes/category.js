@@ -25,7 +25,7 @@ router.get('/categories', async(req, res) => {
 		let categories = await Category.find()
 		res.json({
 			success: true,
-			categories: categories
+			categories
 		})
 	}catch(err){
 		res.status(500).json({
