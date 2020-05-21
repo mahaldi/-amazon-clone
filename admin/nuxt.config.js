@@ -4,6 +4,10 @@ export default {
   /*
   ** Headers of the page
   */
+  server: {
+    port: 8000, // default: 3000
+    host: 'localhost' // default: localhost
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -13,8 +17,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'css', href="/css/all.css" },
-      { rel: 'stylesheet', type: 'css', href="/css/default.css" }
+      { rel: 'stylesheet', href: "/css/all.css" },
+      { rel: 'stylesheet', href: "/css/default.css" }
     ]
   },
   /*
@@ -44,7 +48,7 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
   ],
