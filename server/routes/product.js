@@ -53,4 +53,33 @@ router.get('/products/:id', async(req, res) => {
 		})
 	}
 })
+
+router.put('/products/:id', upload.single('photo'), async(req, res) => {
+	try{
+		let product = await Product.findOneAndUpdate(
+			{ _id: req.params.id },
+			{
+				$set: {
+					title: req.body.title,
+					price: req.body.price,
+					category: req.body.categoryID,
+					photo: req.file.location,
+					description: req.body.description,
+					owner: req.body.ownerID,
+					stockQuantity: req.body.stockQuantity
+				}
+			},
+			{ upsert: true } // akan mengupdate object yang ada saja
+		)
+		res.json({
+			success: true,
+			updatedProduct: product // balikan datanya bukan yang terakhir di update, tapi data di mongo sudah terupdate
+		})
+	}catch(err){
+		res.status(500).json({
+			status: false,
+			message: err
+		})
+	}
+})
 module.exports = router;
