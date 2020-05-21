@@ -38,4 +38,19 @@ router.get('/products', async(req, res) => {
 		})
 	}
 })
+
+router.get('/products/:id', async(req, res) => {
+	try{
+		let products = await Product.findOne({ _id: req.params.id })
+		res.json({
+			success: true,
+			products
+		})
+	}catch(err){
+		res.status(500).json({
+			status: false,
+			message: err
+		})
+	}
+})
 module.exports = router;
