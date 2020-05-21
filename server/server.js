@@ -3,6 +3,7 @@ const morgan = require('morgan') // untuk menampilkan request http pada terminal
 const bodyParser = require('body-parser') // agar data yang diberikan dari front end ke backend dalam format yang proper (translate data dari frontend ke backend)
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const User = require('./models/user')
 
 dotenv.config()
 
@@ -27,8 +28,17 @@ app.get('/', (req, res) => {
 	res.json('running amazon-clone')
 })
 
-app.get('/', (req, res) => {
-	console.log(req.body)
+app.post('/', (req, res) => {
+	let user = new User()
+	user.name = req.body.name
+	user.email = req.body.email
+	user.password = req.body.password
+
+	user.save(err => {
+		if(err)
+			return res.json(err)
+		res.json('successfully saved')
+	})
 })
 
 app.listen(3000, err => {
