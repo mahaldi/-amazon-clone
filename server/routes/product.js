@@ -30,7 +30,7 @@ router.get('/products', async(req, res) => {
 	try{
 		let products = await Product.find()
 		res.json({
-			success: true,
+			status: true,
 			products
 		})
 	}catch(err){
@@ -45,7 +45,7 @@ router.get('/products/:id', async(req, res) => {
 	try{
 		let products = await Product.findOne({ _id: req.params.id })
 		res.json({
-			success: true,
+			status: true,
 			products
 		})
 	}catch(err){
@@ -74,7 +74,7 @@ router.put('/products/:id', upload.single('photo'), async(req, res) => {
 			{ upsert: true } // akan mengupdate object yang ada saja
 		)
 		res.json({
-			success: true,
+			status: true,
 			updatedProduct: product // balikan datanya bukan yang terakhir di update, tapi data di mongo sudah terupdate
 		})
 	}catch(err){
@@ -91,7 +91,7 @@ router.delete('/products/:id', async(req, res) => {
 
 		if(product)
 			res.json({
-				success: true,
+				status: true,
 				message: 'Successfully deleted'
 			})
 	}catch(err) {

@@ -25,7 +25,7 @@ router.get('/owners', async(req, res) => {
 	try{
 		let owners = await Owner.find()
 		res.json({
-			success: true,
+			status: true,
 			owners: owners
 		})
 	}catch(err){
