@@ -103,7 +103,6 @@ export default {
         categories,
         owners
       ]);
-      console.log(catResponse);
       return {
         categories: catResponse.categories,
         owners: ownerResponse.owners
