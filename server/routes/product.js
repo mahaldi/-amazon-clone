@@ -6,6 +6,8 @@ router.post('/products', upload.single('photo'), async(req, res) => {
 	try{
 		let product = new Product()
 		product.title = req.body.title
+		product.ownerID = req.body.ownerID
+		product.categoryID = req.body.categoryID
 		product.description = req.body.description
 		product.photo = req.file.location
 		product.price = req.body.price
