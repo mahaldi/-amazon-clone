@@ -1,4 +1,4 @@
-
+const URL = "http://localhost:3000";
 export default {
   mode: 'universal',
   /*
@@ -16,6 +16,10 @@ export default {
       { rel: 'stylesheet', href: "/css/all.css" },
       { rel: 'stylesheet', href: "/css/default.css" }
     ]
+  },
+  server: {
+    port: 9000, // default: 3000
+    host: 'localhost' // default: localhost
   },
   /*
   ** Customize the progress-bar color
@@ -53,6 +57,12 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: true,
+    baseURL: URL
+  },
+
+  proxy: {
+    "/api": URL
   },
   /*
   ** Build configuration
